@@ -10,7 +10,9 @@ export const App = () => {
         color: '#010101'
       }}
     >
-      React homework template
+      TEST
+      <input type="text" name="name" required />
+      <input type="tel" name="number" required />
     </div>
   );
 };
