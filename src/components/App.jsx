@@ -12,6 +12,17 @@ export class App extends Component {
   };
 
   addContact = contact => {
+    // const { contacts } = this.state;
+    // const doubleContact = contacts.find(
+    //   el =>
+    //     el.contact.name.trim().toLowerCase() === contact.trim().toLowerCase()
+    // );
+
+    // if (doubleContact) {
+    //   console.log(`doubleContact`);
+    //   return;
+    // }
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { contact }],
     }));
@@ -27,7 +38,18 @@ export class App extends Component {
     });
   };
 
+  updateFilter = value => {
+    this.setState({
+      filter: value.trim().toLowerCase(),
+    });
+  };
+
   render() {
+    const { filter, contacts } = this.state;
+    const visibleContact = contacts.filter(el =>
+      el.contact.name.toLowerCase().includes(filter)
+    );
+
     return (
       <div
         style={{
@@ -41,15 +63,14 @@ export class App extends Component {
         }}
       >
         <h1>Phonebook</h1>
-        {/* {console.log(`++++ state APP `, this.state)} */}
         <ContactForm addContact={this.addContact} />
 
         <h2>Contacts</h2>
-        <Filter />
-        <ContactList
-          contacts={this.state.contacts}
-          onDelete={this.deleteContact}
-        />
+        <h3>Find contacts by name</h3>
+
+        <Filter onChange={this.updateFilter} />
+
+        <ContactList contacts={visibleContact} onDelete={this.deleteContact} />
       </div>
     );
   }

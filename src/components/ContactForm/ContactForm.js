@@ -1,9 +1,6 @@
 import { Formik, Field, Form } from 'formik';
 import { nanoid } from 'nanoid';
 
-function resetForm(evt) {
-  console.log(`+++++++ evt`, evt.target);
-}
 export const ContactForm = ({ addContact }) => (
   <div>
     <Formik
@@ -12,13 +9,16 @@ export const ContactForm = ({ addContact }) => (
         number: '',
         id: '',
       }}
-      onSubmit={initialValues => {
+      onSubmit={(initialValues, actions) => {
         initialValues.id = nanoid();
         addContact(initialValues);
-        return (initialValues = {
-          name: '',
-          number: '',
-          id: '',
+
+        actions.resetForm({
+          initialValues: {
+            name: '',
+            number: '',
+            id: '',
+          },
         });
       }}
     >
@@ -36,9 +36,7 @@ export const ContactForm = ({ addContact }) => (
             required
           />
         </label>
-        <button type="submit" onClick={resetForm}>
-          Add contact
-        </button>
+        <button type="submit">Add contact</button>
       </Form>
     </Formik>
   </div>
