@@ -1,4 +1,4 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 import { ErrMsg } from './ContactForm.styled';

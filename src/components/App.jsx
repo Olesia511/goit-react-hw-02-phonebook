@@ -53,7 +53,7 @@ export class App extends Component {
     const visibleContact = contacts.filter(el =>
       el.contact.name.toLowerCase().includes(filter)
     );
-    console.log(`contacts`, this.state.contacts);
+
     return (
       <div
         style={{
