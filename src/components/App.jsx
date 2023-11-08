@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
@@ -12,21 +13,24 @@ export class App extends Component {
   };
 
   addContact = contact => {
-    // const { contacts } = this.state;
-    // const doubleContact = contacts.find(
-    //   el =>
-    //     el.contact.name.trim().toLowerCase() === contact.trim().toLowerCase()
-    // );
+    console.log(`contact`, contact.name);
+    const { contacts } = this.state;
+    const doubleContact = contacts.find(
+      el =>
+        el.contact.name.trim().toLowerCase() ===
+        contact.name.trim().toLowerCase()
+    );
 
-    // if (doubleContact) {
-    //   console.log(`doubleContact`);
-    //   return;
-    // }
+    if (doubleContact) {
+      Notify.failure(`${contact.name} is already in contacts!`);
+      return;
+    }
 
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { contact }],
     }));
   };
+
   deleteContact = evt => {
     const id = evt.target.closest('li').id;
     this.setState(prevState => {
@@ -49,11 +53,11 @@ export class App extends Component {
     const visibleContact = contacts.filter(el =>
       el.contact.name.toLowerCase().includes(filter)
     );
-
+    console.log(`contacts`, this.state.contacts);
     return (
       <div
         style={{
-          height: '100vh',
+          width: '100vw',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
