@@ -13,6 +13,7 @@ const formSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
+    .matches(/^[a-zA-Zа-яА-Я\s]+$/, 'The name must contain only letters')
     .required('Required'),
   number: Yup.string()
     .matches(
@@ -40,13 +41,7 @@ export const ContactForm = ({ addContact }) => (
       <FormContact>
         <LabelForm>
           Name
-          <InputForm
-            name="name"
-            pattern="^\D*$"
-            placeholder="Jane"
-            type="text"
-            required
-          />
+          <InputForm name="name" placeholder="Olesia" type="text" required />
           <ErrMsg name="name" component="span" />
         </LabelForm>
 

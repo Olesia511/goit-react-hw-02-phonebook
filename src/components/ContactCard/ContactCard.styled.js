@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const CardItem = styled.li`
   width: auto;
-  margin-bottom: 12px;
+  margin-bottom: ${p => p.theme.spacing(3)};
   display: flex;
   flex-wrap: nowrap;
-  gap: 16px;
+  gap: ${p => p.theme.spacing(4)};
   justify-content: start;
   align-items: center;
 `;

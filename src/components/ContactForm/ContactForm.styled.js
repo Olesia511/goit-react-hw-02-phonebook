@@ -11,6 +11,7 @@ export const ErrMsg = styled(ErrorMessage)`
   width: auto;
   border-radius: ${props => props.theme.radii.md};
 `;
+
 export const InputForm = styled(Field)`
   padding: ${p => p.theme.spacing(2)};
   font: inherit;

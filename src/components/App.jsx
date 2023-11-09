@@ -4,8 +4,24 @@ import { GlobalStyle } from './GlobalStyles';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import { BasicContainer } from './App.styled';
-// import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { BasicContainer, ContactsContainer } from './App.styled';
+
+Notify.init({
+  width: '280px',
+  position: 'right-top',
+  distance: '12px',
+  opacity: 0.9,
+  borderRadius: '5px',
+  messageMaxLength: 110,
+  fontFamily: 'Quicksand',
+  fontSize: '20px',
+  closeButton: false,
+  useIcon: false,
+  failure: {
+    background: '#251c1c',
+    textColor: '#d6d0d0',
+  },
+});
 
 export class App extends Component {
   state = {
@@ -59,17 +75,19 @@ export class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm addContact={this.addContact} />
 
-        <h2 style={{ marginBottom: 24 }}>Contacts</h2>
-        <h3 style={{ marginBottom: 8 }}>Find contacts by name</h3>
+        <ContactsContainer>
+          <h2 style={{ marginBottom: 24 }}>Contacts</h2>
+          <h3 style={{ marginBottom: 8 }}>Find contacts by name</h3>
 
-        <Filter onChange={this.updateFilter} />
+          <Filter onChange={this.updateFilter} />
 
-        {contacts.length > 0 && (
-          <ContactList
-            contacts={visibleContact}
-            onDelete={this.deleteContact}
-          />
-        )}
+          {contacts.length > 0 && (
+            <ContactList
+              contacts={visibleContact}
+              onDelete={this.deleteContact}
+            />
+          )}
+        </ContactsContainer>
         <GlobalStyle />
       </BasicContainer>
     );

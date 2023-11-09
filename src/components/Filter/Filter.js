@@ -5,7 +5,6 @@ export const Filter = ({ onChange }) => {
     <FilterInput
       type="text"
       placeholder="Name"
-      pattern="^\D*$"
       onChange={e => onChange(e.target.value)}
     />
   );
