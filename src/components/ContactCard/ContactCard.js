@@ -1,3 +1,5 @@
+import { BtnDeleteContact, CardItem } from './ContactCard.styled';
+
 export const ContactCard = ({
   contact: {
     contact: { id, name, number },
@@ -5,11 +7,13 @@ export const ContactCard = ({
   onDelete,
 }) => {
   return (
-    <li key={id} id={id}>
+    <CardItem key={id} id={id}>
       <h3>
-        {name} : {number}
+        {name}: {number}
       </h3>
-      <button onClick={onDelete}>Delete</button>
-    </li>
+      <BtnDeleteContact type="button" onClick={onDelete}>
+        Delete
+      </BtnDeleteContact>
+    </CardItem>
   );
 };

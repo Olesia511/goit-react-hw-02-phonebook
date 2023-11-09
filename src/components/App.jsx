@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import { GlobalStyle } from './GlobalStyles';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter';
+import { Filter } from './Filter/Filter';
+import { BasicContainer } from './App.styled';
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export class App extends Component {
@@ -13,7 +14,6 @@ export class App extends Component {
   };
 
   addContact = contact => {
-    console.log(`contact`, contact.name);
     const { contacts } = this.state;
     const doubleContact = contacts.find(
       el =>
@@ -55,27 +55,23 @@ export class App extends Component {
     );
 
     return (
-      <div
-        style={{
-          width: '100vw',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
+      <BasicContainer>
         <h1>Phonebook</h1>
         <ContactForm addContact={this.addContact} />
 
-        <h2>Contacts</h2>
-        <h3>Find contacts by name</h3>
+        <h2 style={{ marginBottom: 24 }}>Contacts</h2>
+        <h3 style={{ marginBottom: 8 }}>Find contacts by name</h3>
 
         <Filter onChange={this.updateFilter} />
 
-        <ContactList contacts={visibleContact} onDelete={this.deleteContact} />
-      </div>
+        {contacts.length > 0 && (
+          <ContactList
+            contacts={visibleContact}
+            onDelete={this.deleteContact}
+          />
+        )}
+        <GlobalStyle />
+      </BasicContainer>
     );
   }
 }

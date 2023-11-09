@@ -1,4 +1,5 @@
-// import styled from 'styled-components';
-// export const ContactList = styled.ul`
-//   width: 500px;
-// `;
+import styled from 'styled-components';
+
+export const ListPhoneContact = styled.ul`
+  max-width: 680px;
+`;

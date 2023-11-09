@@ -1,7 +1,13 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
-import { ErrMsg } from './ContactForm.styled';
+import {
+  ButtonForm,
+  ErrMsg,
+  FormContact,
+  InputForm,
+  LabelForm,
+} from './ContactForm.styled';
 
 const formSchema = Yup.object().shape({
   name: Yup.string()
@@ -31,24 +37,31 @@ export const ContactForm = ({ addContact }) => (
         actions.resetForm();
       }}
     >
-      <Form>
-        <label>
+      <FormContact>
+        <LabelForm>
           Name
-          <Field name="name" /*placeholder="Jane" */ type="text" required />
+          <InputForm
+            name="name"
+            pattern="^\D*$"
+            placeholder="Jane"
+            type="text"
+            required
+          />
           <ErrMsg name="name" component="span" />
-        </label>
+        </LabelForm>
 
-        <label>
+        <LabelForm>
           Number
-          <Field
+          <InputForm
             name="number"
-            /*placeholder="111 11 11" */ type="tel"
+            placeholder="111 11 11"
+            type="tel"
             required
           />
           <ErrMsg name="number" component="span" />
-        </label>
-        <button type="submit">Add contact</button>
-      </Form>
+        </LabelForm>
+        <ButtonForm type="submit">Add contact</ButtonForm>
+      </FormContact>
     </Formik>
   </div>
 );
